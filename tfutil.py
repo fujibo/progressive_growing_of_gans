@@ -746,4 +746,12 @@ class Network:
                     name = title + '_toplevel/' + localname
                 tf.summary.histogram(name, var)
 
+    def save_npz(self, fname):
+        """save weights in npz format
+        """
+        vars = dict()
+        for key, value in self.vars.items():
+            vars[key] = value.eval()
+        np.savez(fname, **vars)
+
 #----------------------------------------------------------------------------
